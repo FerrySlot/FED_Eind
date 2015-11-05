@@ -7,6 +7,7 @@
 	-webkit-box-sizing: content-box;
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
+	/* border: solid black; */
 }
 
 /* Mediaquerry ======================================================================*/
@@ -24,7 +25,7 @@
 	    margin: 0em;
 	    max-width: 25em;
 		max-height: 20em;
-		overflow-x: scroll;
+		overflow-x: auto;
 		
 		border-style: solid;
 		border-color: #000;
@@ -63,7 +64,9 @@ body
 
 body > header
 {
+
     display: flex;
+
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -79,16 +82,18 @@ header > h1
 header > img
 {
     order:1;
-    height: 8em;
     width: 28em;
-    padding: 2em; 
+    padding: 2em 0em; 
+    max-width: 100%;
+    height: auto;
+    margin: 0;
 }
 
 header > nav
 {
     order:3;
     text-decoration: none;
-    padding: 30px;
+	padding: 2em 0em;
 }
 
 header nav ul
@@ -153,6 +158,11 @@ header > form
     order: 6;
 }
 
+header > form input
+{
+	min-height: 2em;
+}
+
 h1 + p
 {
 	padding: 1em;
@@ -161,6 +171,8 @@ h1 + p
 
 /*==============================================================================================*/
 
+
+
 main > form
 {
 	background-color: #FFF;
@@ -168,6 +180,7 @@ main > form
 	margin-top: 2em;
 	padding: 1em;
 	justify-content: center;
+
 }
 
 
@@ -187,6 +200,7 @@ main > form > fieldset label
 }
 main > form > fieldset label textarea
 {
+
 	display: flex;
 }
 main > form > fieldset label input[type=radio]
@@ -196,6 +210,11 @@ main > form > fieldset label input[type=radio]
 main > form > fieldset label input[type=checkbox]
 {
 	display: inline-flex;
+}
+
+main > form  input
+{
+	min-height: 2em;
 }
 
 main > form > input[type=submit]
@@ -223,10 +242,18 @@ main > form > fieldset label input:checked[value="stage"]
 
 .related article
 {
+	display: -webkit-inline-flex;
     display: inline-flex;
+
     flex-direction: row;
+    -webkit-flex-direction: row;
+
+	-webkit-justify-content: center;
     justify-content: center;
+
     flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
+
     padding-top: 1em;
     padding-bottom: 1em;
     margin: 0em;
@@ -235,11 +262,19 @@ main > form > fieldset label input:checked[value="stage"]
     width: 30%;
     min-width: 20em;
 	max-height: 20em;
-	overflow-y: scroll;
+	overflow-y: auto;
 	
 	border-style: solid;
 	border-color: #000;
 	border-width: 1px;
+}
+@media (max-width: 45em)
+{
+	.related article
+	{
+		overflow: hidden;
+	}
+
 }
 
 .related article:nth-of-type(odd)
@@ -266,6 +301,7 @@ main > form > fieldset label input:checked[value="stage"]
 {
 	padding: 1em;
 }
+
 .related article section h4
 {
 	padding: 1em;
@@ -293,27 +329,37 @@ main > form > fieldset label input:checked[value="stage"]
 aside section
 {
 	display: inline-flex;
+	display: -webkit-inline-flex;
 	flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
+
 	justify-content: center;
+	-webkit-justify-content: center;
 }
 aside section h2
 {
 	flex-basis: 80em;
+	-webkit-flex-basis: 80em;
 }
 
 aside section article
 {
+	display: -webkit-inline-flex;
     display: inline-flex;
+
     flex-direction: row;
-	flex-wrap: wrap;
+    -webkit-flex-direction: row;
+
+    flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
     padding-top: 1em;
     padding-bottom: 1em;
     margin: 0em;
     background-color: #FFF;
 
 	max-width: 16em;
-	height: 10;
-	/* overflow-y: scroll; */
+	height: 10em;
+	/* overflow-y: auto; */
 	border-style: solid;
 	border-color: #000;
 	border-width: 1px;
@@ -338,7 +384,7 @@ body > footer section
 
 body > footer section#sitemap
 {
-	order: 2;
+	order: 0;
 }
 
 body > footer section#sitemap > ul
@@ -346,6 +392,7 @@ body > footer section#sitemap > ul
 	display: flex;
 	flex-basis: 80em;
 	padding-bottom: 1em;
+	flex-direction: row;
 }
 
 body > footer section#sitemap > ul a
@@ -371,12 +418,12 @@ body > footer section#contact
 body > footer section#search
 {
 
-	order: 1;
+	order: 2;
 }
 
 body > footer section#about
 {
-	order: 0;
+	order: 1;
 	max-width: 40em;
 }
 
@@ -392,7 +439,7 @@ body > footer p#feedback
 }
 
 
-@media (max-width: 40em)
+@media (max-width: 45em)
 {
 	body > header 
 	{
@@ -401,7 +448,8 @@ body > footer p#feedback
 
 	.related article
 	{
-		width: 100%;
+		max-width: 80%;
+		flex-direction: row;
 	}
 	aside section article
 	{
@@ -409,7 +457,7 @@ body > footer p#feedback
 	}
 	main > form > fieldset
 	{
-		max-width: 20em;
+		max-width: 80%;
 	}
 	#project
 	{
@@ -419,9 +467,23 @@ body > footer p#feedback
 	{
 		flex-direction: column;
 	}
+	#sitemap
+	{
+		display: none;
+	}
 	nav
 	{
 		max-width: 40em;
 		width: 100%;
 	}
+}
+
+picture img
+{
+	max-width: 100%;
+}
+
+.hidden
+{
+	display: none;
 }
