@@ -6,6 +6,7 @@ var radioButton = document.querySelectorAll('input[type=radio]');
 var projectField = document.getElementById("project");
 var stageField = document.getElementById("stage");
 
+
 radioButton[0].addEventListener("click", checkAanmelden);
 radioButton[1].addEventListener("click", checkAanmelden);
 
@@ -37,10 +38,69 @@ function checkAanmelden()
     }
 }
 
+/*
+radioButton[0].onclick = stage.classList.add("hidden");
+radioButton[1].onclick = stage.classList.add("hidden");
+
+radioButton[0].onclick = stage.classList.remove("hidden");
+radioButton[1].onclick = stage.classList.remove("hidden");
+*/
+
 screenWidth();
 function screenWidth()
 {
     var y = window.innerWidth;
     console.log("Browser breedte is: " + y + " pixels");
     return y;
+}
+
+
+
+
+var relatedArticle = document.querySelectorAll('section.related article');
+
+for (var i = 0; i < relatedArticle.length; i++)
+{
+    relatedArticle[i].addEventListener("click", clickRelated);
+
+    if (window.innerWidth < 640)
+    {
+        relatedArticle[i].style.overflow = "hidden";
+    }
+    if (window.innerWidth > 640)
+    {
+        relatedArticle[i].style.overflow = "scroll";
+    }
+}
+
+function clickRelated()
+{
+    if (window.innerWidth < 640)
+    {
+        for (var i = 0; i < relatedArticle.length; i++)
+        {
+            if (relatedArticle[i].style.overflow == "hidden")
+            {
+                relatedArticle[i].style.overflow = "auto";
+                relatedArticle[i].style.fgColor = "#000000";
+                console.log("overflow set to auto");
+            }
+            else if (relatedArticle[i].style.overflow == "auto")
+            {
+                relatedArticle[i].style.overflow = "hidden";
+                console.log("overflow set to hidden");
+            }  
+            else { relatedArticle[i].style.overflow = "hidden"; }
+        }
+    }
+    else
+    {
+        for (var i = 0; i < relatedArticle.length; i++)
+        {
+            if (relatedArticle[i].style.overflow == "hidden")
+            {  
+                relatedArticle[i].style.overflow = "auto";
+            }
+        }
+    }
 }
